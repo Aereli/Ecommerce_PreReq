@@ -15,7 +15,7 @@ public class DbConnectionTEST {
 
 		System.out.println("Connecting database...");
 
-		try (Connection connection = (Connection) DriverManager.getConnection(url, username, password)) {
+		try (Connection con = (Connection) DriverManager.getConnection(url, username, password)) {
 		    System.out.println("Database connected!");
 		} catch (SQLException e) {
 		    throw new IllegalStateException("Cannot connect the database!", e);
