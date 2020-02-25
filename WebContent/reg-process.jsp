@@ -9,7 +9,7 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
 		Statement st = conn.createStatement();
-		int i = st.executeUpdate("insert into users(userid,password)values('" + userid + "','" + password + "')");
+		int i = st.executeUpdate("insert into user(name,password)values('" + userid + "','" + password + "')");
 		out.println("Thank you for register ! Please <a href='index.html'>Login</a> to continue.");
 	} catch (Exception e) {
 		System.out.print(e);
