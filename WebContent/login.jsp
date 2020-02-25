@@ -57,6 +57,7 @@ ResultSet resultSet = null;
 <td>Product Name</td>
 <td>Description</td>
 <td>Price</td>
+<td>Add</td>
 </tr>
 <%
 try{
@@ -67,9 +68,19 @@ resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
 <tr>
-<td><%=resultSet.getString("name") %></td>
+
+
+<td><%=resultSet.getString("name") %>
 <td><%=resultSet.getString("description") %></td>
 <td><%=resultSet.getString("price") %></td>
+
+<!-- <td><input type=button value='idproduct' onclick=addcart(); type="submit" /></td> -->
+
+<td><a href="addCart.jsp?id=<%=resultSet.getString("idproduct")%>">add</a></td>
+
+
+
+
 </tr>
 <%
 }
