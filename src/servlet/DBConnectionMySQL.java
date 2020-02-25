@@ -9,8 +9,8 @@ public class DBConnectionMySQL {
     protected static Connection initializeDatabase() 
         throws SQLException, ClassNotFoundException 
     { 
-    	
-    	String url = "jdbc:mysql://localhost:3306/mydb";
+    	//this ?useSSL=false part is to remove warning for later versions os mysql that need it.
+    	String url = "jdbc:mysql://localhost:3306/mydb?useSSL=false";
     	String username = "root";
     	String password = "root";
 
