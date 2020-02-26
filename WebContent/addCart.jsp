@@ -34,29 +34,25 @@ connection = DriverManager.getConnection(connectionUrl+database, userid, passwor
 //resultSet = statement.executeQuery(getProductId);
 
 
-String getProductId = "select * from product where idproduct in (?)";
+String getProductId = "select * from product where idproduct in (?);";
 PreparedStatement st = connection.prepareStatement(getProductId);
 st.setString(1, id);
 System.out.println(st);
 
 resultSet = st.executeQuery();
-
 System.out.println(resultSet);
-
 while(resultSet.next()){
 %>
 <!DOCTYPE html>
 <html>
 <body>
-<h1>Update data from database in jsp</h1>
+<h1>Item chosen to send to cart!</h1>
 <form method="post" action="addCart.jsp">
 <input type="hidden" name="idproduct" value="<%=resultSet.getString("idproduct") %>">
-<input type="text" name="idproduct" value="<%=resultSet.getString("idproduct") %>">
-<br>
-First name:<br>
+Product Name:<br>
 <input type="text" name="name" value="<%=resultSet.getString("name") %>">
 <br>
-Last name:<br>
+Description:<br>
 <input type="text" name="description" value="<%=resultSet.getString("description") %>">
 <br><br>
 <input type="submit" value="submit">

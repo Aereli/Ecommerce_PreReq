@@ -2,60 +2,89 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
-<%@ page language="java" import="java.util.*"
-	contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
+
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@page import="java.sql.*,java.util.*"%>
+
 
 <%
-	String url = "jdbc:mysql://localhost:3306/mydb?useSSL=false";
-	String driverName = "com.mysql.jdbc.Driver";
-	String username = "root";
-	String password = "root";
+	String userid = request.getParameter("name");
+	session.putValue("name", userid);
+	String password = request.getParameter("password");
+	Class.forName("com.mysql.jdbc.Driver");
+	java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?useSSL=false", "root", "root");
+	Statement statement = con.createStatement();
+	ResultSet result = statement
+			.executeQuery("select * from user where name='" + userid + "' and password='" + password + "'");
 	try {
-		Class.forName(driverName);
-	} catch (ClassNotFoundException e) {
+		result.next();
+		if (result.getString("password").equals(password) && result.getString("name").equals(userid)) {
+			out.println("Welcome " + userid);
+			
+		} else {
+			//out.println("Invalid password or username.");
+			 response.sendRedirect("index.html"); //error
+	         // HttpSession  session=request.getSession(true);
+	            session.setAttribute("errorMessage", "Login Failed ");
+		}
+	} catch (Exception e) {
 		e.printStackTrace();
 	}
-	Connection connection = null;
-	Statement statement;
-	ResultSet resultSet;
+%>
+
+
+<%
+String driver = "com.mysql.jdbc.Driver";
+try {
+Class.forName(driver);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+Connection connection = null;
+ResultSet resultSet = null;
+
 %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Welcome</title>
-</head>
 <body>
-	<table>
 
-		<%
-			try (Connection con = (Connection) DriverManager.getConnection(url, username, password)) {
-				System.out.println("Database connected!");
+<h1>Retrieve data from database in jsp</h1>
+<table border="1">
+<tr>
+<td>Product Name</td>
+<td>Description</td>
+<td>Price</td>
+<td>Add</td>
+</tr>
+<%
+try{
+connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?useSSL=false", "root", "root");
+statement=connection.createStatement();
+String sql ="select * from product";
+resultSet = statement.executeQuery(sql);
+while(resultSet.next()){
+%>
+<tr>
 
-				statement = connection.createStatement();
-				resultSet = statement.executeQuery("select * from product");
-				while (resultSet.next()) {
-					
-		%>
-		
-		 <%
-		  System.out.println(resultSet.getString("name"));		 
-		 %>
-		<tr>
-			<td><%=resultSet.getString("idproduct")%></td>
+<td><%=resultSet.getString("name") %>
+<td><%=resultSet.getString("description") %></td>
+<td><%=resultSet.getString("price") %></td>
 
-			<td><%=resultSet.getString("name")%></td>
+<td><a href="addCart.jsp?id=<%=resultSet.getString("idproduct")%>">add</a></td>
 
-		</tr>
-		<%
-			}
-			
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		%>
+</tr>
+<%
 
-	</table>
+}
+connection.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
+</table>
 
 </body>
 </html>
