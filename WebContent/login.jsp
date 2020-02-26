@@ -69,20 +69,15 @@ while(resultSet.next()){
 %>
 <tr>
 
-
 <td><%=resultSet.getString("name") %>
 <td><%=resultSet.getString("description") %></td>
 <td><%=resultSet.getString("price") %></td>
 
-<!-- <td><input type=button value='idproduct' onclick=addcart(); type="submit" /></td> -->
-
 <td><a href="addCart.jsp?id=<%=resultSet.getString("idproduct")%>">add</a></td>
-
-
-
 
 </tr>
 <%
+
 }
 connection.close();
 } catch (Exception e) {
@@ -90,5 +85,6 @@ e.printStackTrace();
 }
 %>
 </table>
+
 </body>
 </html>

@@ -2,8 +2,12 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="java.sql.PreparedStatement" %>
+
+
+ 
 <%
-String id = request.getParameter("idproduct");
+String id = request.getParameter("id");
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://localhost:3306/";
 String database = "mydb?useSSL=false";
@@ -21,10 +25,24 @@ ResultSet resultSet = null;
 <%
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
-statement=connection.createStatement();
+//statement=connection.createStatement();
 //select * from product where idproduct in (2); this line works in MySQL
-String sql ="select * from product where idproduct"= +id;
-resultSet = statement.executeQuery(sql);
+//String getProductId ="select * from product where idproduct in="+id;
+
+//prepared statement WORKS
+//String getProductId = "select * from product where idproduct in('"+id+"')";
+//resultSet = statement.executeQuery(getProductId);
+
+
+String getProductId = "select * from product where idproduct in (?)";
+PreparedStatement st = connection.prepareStatement(getProductId);
+st.setString(1, id);
+System.out.println(st);
+
+resultSet = st.executeQuery();
+
+System.out.println(resultSet);
+
 while(resultSet.next()){
 %>
 <!DOCTYPE html>
