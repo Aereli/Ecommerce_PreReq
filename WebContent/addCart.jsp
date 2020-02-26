@@ -47,7 +47,7 @@ while(resultSet.next()){
 <html>
 <body>
 <h1>Item chosen to send to cart!</h1>
-<form method="post" action="addCart.jsp">
+<form method="post" action="cartOrder.jsp">
 <input type="hidden" name="idproduct" value="<%=resultSet.getString("idproduct") %>">
 Product Name:<br>
 <input type="text" name="name" value="<%=resultSet.getString("name") %>">
