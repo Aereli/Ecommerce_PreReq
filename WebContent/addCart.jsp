@@ -54,6 +54,9 @@ Product Name:<br>
 <br>
 Description:<br>
 <input type="text" name="description" value="<%=resultSet.getString("description") %>">
+<br>
+Price:<br>
+<input type="text" name="price" value="<%=resultSet.getString("price") %>">
 <br><br>
 <input type="submit" value="submit">
 </form>
