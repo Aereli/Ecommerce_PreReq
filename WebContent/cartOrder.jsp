@@ -5,6 +5,9 @@
 <%!String url = "jdbc:mysql://localhost:3306/mydb?useSSL=false";%>
 <%!String user = "root";%>
 <%!String psw = "root";%>
+
+
+		  	 
 <%
 	String id = request.getParameter("id");
 	String name = request.getParameter("name");
@@ -19,9 +22,12 @@
 			Class.forName(driverName);
 			con = DriverManager.getConnection(url, user, psw);
 			// String sql="INSERT into product_has_order id=?,first_name=?,last_name=?,city_name=?,email=? where id="+id;
-			ps = con.prepareStatement(sql);
+			//ps = con.prepareStatement(sql);
+			
+
+			
 			ps.setString(1, id);
-			ps.setString(2, first_name);
+			ps.setString(2, name);
 			ps.setString(3, last_name);
 
 			int i = ps.executeUpdate();
@@ -36,3 +42,4 @@
 		}
 	}
 %>
+

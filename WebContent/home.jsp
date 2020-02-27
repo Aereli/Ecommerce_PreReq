@@ -51,6 +51,8 @@ ResultSet resultSet = null;
 <html>
 <body>
 
+<form>
+
 <h1>Retrieve data from database in jsp</h1>
 <table border="1">
 <tr>
@@ -76,6 +78,7 @@ while(resultSet.next()){
 <td><a href="addCart.jsp?id=<%=resultSet.getString("idproduct")%>">add</a></td>
 
 </tr>
+
 <%
 
 }
@@ -85,6 +88,7 @@ e.printStackTrace();
 }
 %>
 </table>
+</form>
 
 </body>
 </html>

@@ -25,8 +25,12 @@
 	ResultSet resultSet = null;
 %>
 
-
 <%!ArrayList al = new ArrayList();%>
+
+<%!ArrayList al1 = new ArrayList();%>
+<%!ArrayList al2 = new ArrayList();%>
+<%!ArrayList al3 = new ArrayList();%>
+
 <%
 	try {
 		connection = DriverManager.getConnection(connectionUrl + database, userid, password);
@@ -48,8 +52,9 @@
 		while (resultSet.next()) {
 		
 %>
-
-	<% al.add(0, resultSet.getString("price")); %>
+<!--  
+<h1>Your Total ammount is:</h1>
+<% al.add(0, resultSet.getString("price")); %>
 <select>
 	<%
 		for (int i = 0; i < al.size(); i++) {
@@ -60,22 +65,62 @@
 		}
 	%>
 </select>
+-->
+<% al1.add(0, resultSet.getString("price")); %>
+<% al2.add(0, resultSet.getString("name")); %>
+<% al3.add(0, resultSet.getString("description")); %>
+
 <!DOCTYPE html>
 <html>
 <body>
-	<h1>these are the items in your cart!</h1>
-	<form method="post" action="cartOrder.jsp">
-		<input type="hidden" name="idproduct"
-			value="<%=resultSet.getString("idproduct")%>"> Product Name:<br>
-		<input type="text" name="name"
-			value="<%=resultSet.getString("name")%>"> <br>
-		Description:<br> <input type="text" name="description"
-			value="<%=resultSet.getString("description")%>"> <br>
-		Price:<br> <input type="text" name="price"
-			value="<%=resultSet.getString("price")%>"> <br>
-		<br> <input type="submit" value="submit">
-		
-	</form>
+<form>
+<h1>These are all your cart items!</h1>
+
+	<%
+	Integer count = 0;
+		for (int i = 0; i < al1.size(); i++) {
+					String pricePro = (String) al1.get(i);
+					String namePro = (String) al2.get(i);
+					String descriptionPro = (String) al3.get(i);
+					count++;
+	%>
+	
+			<table border="">
+			<tr>
+			<td>Item:<%=count %>
+			</td></tr>
+			<tr>
+			<td>Product Name</td>
+			<td>
+				<input type="text" name="name"
+				value="<%=namePro%>">
+			</td>
+			</tr>
+			<tr>
+			<td>Description</td>
+			<td>
+				<input type="text" name="name"
+				value="<%=descriptionPro%>">
+			</td>
+			</tr>
+	<tr>
+			<td>Price</td>
+			<td>
+				<input type="text" name="name"
+				value="<%=pricePro%>">
+			</td>
+			</tr>
+			
+			</table>
+			<br>
+	<%
+		}
+	%>
+</form>
+	
+	
+
+	
 
 
 
