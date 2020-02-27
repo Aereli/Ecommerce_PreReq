@@ -1,7 +1,6 @@
-# Royal Caribbean Pre-Requisite E-commerce Site
+# Pre-Requisite E-commerce Site
     Project started: 2/11/20
 
-This is my interview entry as a System Analyst at Royal Caribbean
 Project built entirely in **Java** with **MySQL** database
 
 ## Project Specifications
