@@ -1,4 +1,4 @@
-#Royal Caribbean Pre-Req Eccomerce Site
+# Royal Caribbean Pre-Requisite E-commerce Site
     Project started: 2/11/20
 
 This is my interview entry as a System Analyst at Royal Caribbean
