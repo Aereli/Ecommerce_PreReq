@@ -41,7 +41,9 @@
 		//prepared statement WORKS
 		//String getProductId = "select * from product where idproduct in('"+id+"')";
 		//resultSet = statement.executeQuery(getProductId);
-
+		String getUserId = "select * from user";
+		PreparedStatement userIdStatement = connection.prepareStatement(getUserId);
+		userIdStatement.setString(1,)
 		String getProductId = "select * from product where idproduct in (?);";
 		PreparedStatement st = connection.prepareStatement(getProductId);
 		st.setString(1, id);
@@ -65,13 +67,10 @@
 					priceCounter += Integer.parseInt(totalPrice);
 	%>
 	
+	
 	<%
 		}
 	%>
-
-
-
-
 
 <% al1.add(0, resultSet.getString("price")); %>
 <% al2.add(0, resultSet.getString("name")); %>
@@ -83,11 +82,16 @@
 <form>
 <h1>These are all your cart items!</h1>
 
-<div>
-<label><h3> Your total amount to pay is:</h3></label>
+
+<form method="post" action="order.jsp">
+<h3> Your total amount to pay is:</h3>
 $:<input value="<%=priceCounter%>"></input>
-</div>
+<input type="submit" value=submit>
+</form>
+
 <br>
+
+
 	<%
 	Integer count = 0;
 		for (int i = 0; i < al1.size(); i++) {
@@ -130,12 +134,6 @@ $:<input value="<%=priceCounter%>"></input>
 	%>
 </form>
 	
-	
-
-	
-
-
-
 	<%
 		}
 			connection.close();

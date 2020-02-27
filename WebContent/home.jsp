@@ -11,18 +11,19 @@
 
 
 <%
-	String userid = request.getParameter("name");
-	session.putValue("name", userid);
+	String idUserId = request.getParameter("iduser");
+	String userName = request.getParameter("name");
+	session.putValue("name", userName);
 	String password = request.getParameter("password");
 	Class.forName("com.mysql.jdbc.Driver");
 	java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
 	Statement statement = con.createStatement();
 	ResultSet result = statement
-			.executeQuery("select * from user where name='" + userid + "' and password='" + password + "'");
+			.executeQuery("select * from user where name='" + userName + "' and password='" + password + "'");
 	try {
 		result.next();
-		if (result.getString("password").equals(password) && result.getString("name").equals(userid)) {
-			out.println("Welcome " + userid);
+		if (result.getString("password").equals(password) && result.getString("name").equals(userName)) {
+			out.println("Welcome " + userName + "user id:" + idUserId);
 			
 		} else {
 			//out.println("Invalid password or username.");
