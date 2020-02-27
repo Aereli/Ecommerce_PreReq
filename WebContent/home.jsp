@@ -15,7 +15,7 @@
 	session.putValue("name", userid);
 	String password = request.getParameter("password");
 	Class.forName("com.mysql.jdbc.Driver");
-	java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?useSSL=false", "root", "root");
+	java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
 	Statement statement = con.createStatement();
 	ResultSet result = statement
 			.executeQuery("select * from user where name='" + userid + "' and password='" + password + "'");

@@ -25,7 +25,7 @@
 	ResultSet resultSet = null;
 %>
 
-<%!ArrayList al = new ArrayList();%>
+<%!ArrayList total = new ArrayList();%>
 
 <%!ArrayList al1 = new ArrayList();%>
 <%!ArrayList al2 = new ArrayList();%>
@@ -52,20 +52,27 @@
 		while (resultSet.next()) {
 		
 %>
-<!--  
-<h1>Your Total ammount is:</h1>
-<% al.add(0, resultSet.getString("price")); %>
-<select>
-	<%
-		for (int i = 0; i < al.size(); i++) {
-					String option = (String) al.get(i);
+
+  
+
+<% total.add(0, resultSet.getString("price")); %>
+
+	<% 
+		Integer priceCounter = 0;
+		for (int j = 0; j < total.size(); j++) {
+					String totalPrice = (String) total.get(j);
+					
+					priceCounter += Integer.parseInt(totalPrice);
 	%>
-	<option value="<%=option%>"><%=option%></option>
+	
 	<%
 		}
 	%>
-</select>
--->
+
+
+
+
+
 <% al1.add(0, resultSet.getString("price")); %>
 <% al2.add(0, resultSet.getString("name")); %>
 <% al3.add(0, resultSet.getString("description")); %>
@@ -76,6 +83,11 @@
 <form>
 <h1>These are all your cart items!</h1>
 
+<div>
+<label><h3> Your total amount to pay is:</h3></label>
+$:<input value="<%=priceCounter%>"></input>
+</div>
+<br>
 	<%
 	Integer count = 0;
 		for (int i = 0; i < al1.size(); i++) {
