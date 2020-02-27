@@ -3,7 +3,7 @@ package servlet;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class sum {
+public class ShoppingCart {
    
 	public static void main(String[] args) 
     {
@@ -17,3 +17,5 @@ public class sum {
         System.out.println(namesList);  //list size is 4
     }
 }
+
+
