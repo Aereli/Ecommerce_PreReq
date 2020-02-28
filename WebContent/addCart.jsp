@@ -41,9 +41,9 @@
 		//prepared statement WORKS
 		//String getProductId = "select * from product where idproduct in('"+id+"')";
 		//resultSet = statement.executeQuery(getProductId);
-		String getUserId = "select * from user";
-		PreparedStatement userIdStatement = connection.prepareStatement(getUserId);
-		userIdStatement.setString(1,)
+		//String getUserId = "select * from user";
+		//PreparedStatement userIdStatement = connection.prepareStatement(getUserId);
+		//userIdStatement.setString(1,)
 		String getProductId = "select * from product where idproduct in (?);";
 		PreparedStatement st = connection.prepareStatement(getProductId);
 		st.setString(1, id);
