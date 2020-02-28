@@ -1,4 +1,4 @@
-# Pre-Requisite E-commerce Site
+# Pre-Requisite E-commerce Site (currently under construction!!)
     Project started: 2/19/20
 
 Project built entirely in **Java** with **MySQL** database
