@@ -23,7 +23,9 @@
 	try {
 		result.next();
 		if (result.getString("password").equals(password) && result.getString("name").equals(userName)) {
-			out.println("Welcome " + userName + "user id:" + idUserId);
+			// i think the id does not show u[p because it is a string?
+					int idParsed = Integer.parseInt(idUserId);
+			out.println("Welcome " + userName + "  user id:  " + idParsed);
 			
 		} else {
 			//out.println("Invalid password or username.");
@@ -54,7 +56,7 @@ ResultSet resultSet = null;
 
 <form>
 
-<h1>Retrieve data from database in jsp</h1>
+<h1>This is the data retrieved from table: product</h1>
 <table border="1">
 <tr>
 <td>Product Name</td>
