@@ -16,6 +16,7 @@ Database: MySQL Notifier 1.1
 [Store](https://serene-sierra-69634.herokuapp.com/)
 
 ## Notes
+* Deployment help used with https://lanihuang.com/blog/web-dev/2016/12/19/deploying-jsp-web-app-on-heroku.html
 * Using Servlets for database connections
 * Jsp Files for html frontend deployment
 
