@@ -13,7 +13,7 @@
 <%
 	String idUserId = request.getParameter("iduser");
 	String userName = request.getParameter("name");
-	session.putValue("name", userName);
+	
 	String password = request.getParameter("password");
 	Class.forName("com.mysql.jdbc.Driver");
 	java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
@@ -23,7 +23,7 @@
 	try {
 		result.next();
 		if (result.getString("password").equals(password) && result.getString("name").equals(userName)) {
-			// i think the id does not show u[p because it is a string?
+			// i think the id does not show up because it is a string?
 					int idParsed = Integer.parseInt(idUserId);
 			out.println("Welcome " + userName + "  user id:  " + idParsed);
 			
